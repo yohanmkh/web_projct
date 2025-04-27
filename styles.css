@@ -1,0 +1,261 @@
+/* styles.css */
+body {/*center the elements of the body*/
+    font-family: "Segoe UI Adjusted","Segoe UI","Liberation Sans",sans-serif;
+    background-color: #f2f2f2;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    
+   
+}
+
+body.home-page {
+  background-color: #ffffff !important ;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  font-family: 'Segoe UI', sans-serif;
+  
+  /* Add any specific styles for index.php here */
+}
+
+
+.logo {
+    width: 100px;
+    height: auto;
+  }
+  /* Navbar container */
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;  /* Space between logo & links */
+    align-items: center;
+    background-color: #ffffff; /* StackOverflow orange */
+   padding: 10px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 10px;
+    position: fixed; /* Fixed position */
+    top: 0;
+    left: 0;
+    width: 99%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000; /* Ensure it stays above other content */
+    /*change the size of the fonts*/
+    font-size: 24px;
+    font-weight: 700;
+    
+  }
+
+  
+  /* Logo Section */
+  .logo-section {
+    display: flex;
+    align-items: center;
+  }
+
+  
+  .logo-img {
+    height: 50px;
+    margin-right: 10px;
+    
+  }
+  
+  .logo-text {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  /* Navigation Links */
+  .nav-links {
+    display: flex;
+    gap: 20px; /* Adds spacing between links */
+  }
+  
+  .nav-links a {
+    color: rgb(68, 68, 68);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    opacity: 0.8;
+  }
+  
+  
+
+  
+  
+.login-container,.register-container{
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+header, section {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.donts {
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+}
+h1, h2, h3 {
+    color: #333;
+}
+.error {
+    color: red;
+}
+.cred_input[type="text"], input[type="password"], textarea {
+    width: 50%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+.submit_button {
+    padding: 10px 15px;
+    background: #4285F4;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.submit_button:hover {
+    background: #357ae8;
+}
+.question, .answer {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:none;
+    border-radius: 8px;
+    width: 50%;
+    margin-top: 7px;
+  }
+  
+  .search-input {
+    width: 70%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    flex: 1;    
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+    }
+  
+  .search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+  .google-btn {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    color: #444;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+  }
+  
+  .google-btn:hover {
+    background-color: #f7f7f7;
+  }
+  
+  .google-icon {
+    height: 18px;
+    width: 18px;
+    margin-right: 10px;
+  }
+  .welcome-container {
+    text-align: center;
+    margin-top: 10px;
+  }
+  a{
+    color :rgb(100, 122, 246);
+    text-decoration: none;
+  }
+  .question-container {
+    margin-top: 
+    100px;
+    margin-bottom: 15px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(47, 60, 243, 0.1);
+    width: 90%;
+  }
+
+  #indexquestion{
+    margin-top: auto;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: #666;
+  }
+  .question{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 10px;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 8px;
+   
+  }
+ 
+  .bugsearch{
+    margin-top: 40px;
+  }
+  #edit_icon {
+    margin-left: 50px;
+    
+  }
+  .edit-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    border-radius: 8px;
+    width: 60%;
+    margin-top: 7px;
+    padding: 10px 10px 20px ;
+  }
+  
+  
+  
