@@ -1,0 +1,342 @@
+/* BugBox Modern Redesign - styles2.css */
+:root {
+    --primary: #2563eb;
+    --primary-light: #3b82f6;
+    --primary-dark: #1e40af;
+    --accent: #f59e42;
+    --danger: #ef4444;
+    --success: #22c55e;
+    --bg: #f4f6fa;
+    --white: #fff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+    --shadow: 0 2px 12px rgba(30,64,175,0.07);
+    --radius: 10px;
+    --transition: 0.18s cubic-bezier(.4,0,.2,1);
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--gray-800);
+    margin: 0;
+    min-height: 100vh;
+}
+
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 32px;
+    z-index: 1000;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 24px;
+}
+
+.logo-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: 1px;
+}
+
+.search-container {
+    flex: 1;
+    max-width: 400px;
+    margin: 0 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    width: 100%;
+    min-width: 200px;
+    max-width: 400px;
+    height: 36px;
+    padding: 0 12px;
+    border: 1.5px solid var(--gray-300);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    color: var(--gray-800);
+    background: var(--gray-100);
+    transition: border var(--transition);
+    box-sizing: border-box;
+}
+
+.search-input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+.nav-links a {
+    color: var(--gray-600);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: var(--radius);
+    transition: background var(--transition), color var(--transition);
+}
+.nav-links a:hover {
+    background: var(--primary-light);
+    color: var(--white);
+}
+
+.main-content {
+    margin-top: 80px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 32px 16px;
+}
+
+.card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 32px;
+    margin-bottom: 32px;
+}
+
+.question-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+}
+.question-metadata {
+    color: var(--gray-400);
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+}
+.question-content {
+    font-size: 1.15rem;
+    color: var(--gray-800);
+    margin-bottom: 24px;
+}
+
+.answers-section {
+    margin-top: 40px;
+}
+.answers-header {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-bottom: 18px;
+}
+.answer-card {
+    background: var(--gray-100);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 24px;
+}
+
+.vote-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-right: 18px;
+}
+.vote-button {
+    background: var(--white);
+    border: 2px solid var(--gray-300);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--gray-600);
+    cursor: pointer;
+    transition: all var(--transition);
+    margin-bottom: 4px;
+}
+.vote-button.active.upvote {
+    background: var(--primary-light);
+    color: var(--white);
+    border-color: var(--primary);
+}
+.vote-button.active.downvote {
+    background: var(--danger);
+    color: var(--white);
+    border-color: var(--danger);
+}
+.vote-button:hover {
+    background: var(--gray-200);
+}
+.vote-count {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin: 6px 0;
+}
+
+.answer-content {
+    font-size: 1.08rem;
+    color: var(--gray-800);
+    margin-bottom: 10px;
+}
+.answer-metadata {
+    color: var(--gray-400);
+    font-size: 0.95rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.action-btn {
+    background: var(--primary-light);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    padding: 7px 16px;
+    font-size: 0.98rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition);
+    text-decoration: none;
+    display: inline-block;
+}
+.action-btn.edit-btn {
+    background: var(--primary);
+}
+.action-btn.delete-btn {
+    background: var(--danger);
+}
+.action-btn:hover {
+    background: var(--accent);
+    color: var(--white);
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+input[type="text"],
+input[type="password"],
+textarea {
+    padding: 12px;
+    border: 1.5px solid var(--gray-300);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--gray-100);
+    color: var(--gray-800);
+    transition: border var(--transition);
+    max-width: 320px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+button, .submit_button {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition);
+}
+button:hover, .submit_button:hover {
+    background: var(--primary-dark);
+}
+
+.error-message {
+    color: var(--danger);
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+    padding: 12px;
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 700px) {
+    .main-content {
+        padding: 12px 2vw;
+    }
+    .card, .answer-card {
+        padding: 16px;
+    }
+    .navbar {
+        padding: 0 10px;
+    }
+    .answers-section {
+        margin-top: 24px;
+    }
+}
+
+.register-form label, .login-form label {
+    display: inline-block;
+    width: 140px;
+    text-align: center;
+    margin-right: 16px;
+    vertical-align: middle;
+    font-weight: 500;
+}
+
+.register-form input[type="text"],
+.register-form input[type="password"],
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    display: inline-block;
+    width: 180px;
+    max-width: 180px;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.register-form, .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+}
+
+.register-form > div, .login-form > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 

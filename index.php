@@ -1,87 +1,133 @@
-
-
 <?php
 // index.php
 require 'config.php';
 
-$search = "";
-if (isset($_GET['search'])) {
-    $search = $conn->real_escape_string($_GET['search']);
-    $query = "SELECT * FROM questions WHERE title LIKE '%$search%' ORDER BY created_at DESC";
+$search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
+if ($search !== '') {
+    $query = "SELECT q.*, u.username FROM questions q 
+              JOIN users u ON q.user_id = u.id 
+              WHERE q.title LIKE '%$search%' OR q.content LIKE '%$search%'
+              ORDER BY q.created_at DESC";
 } else {
-    $query = "SELECT * FROM questions ORDER BY created_at DESC";
+    $query = "SELECT q.*, u.username FROM questions q 
+              JOIN users u ON q.user_id = u.id 
+              ORDER BY q.created_at DESC";
 }
 $result = $conn->query($query);
+if (!$result) {
+    die("Error executing query: " . $conn->error);
+}
+
+$questions = [];
+if ($result->num_rows > 0) {
+    while($question = $result->fetch_assoc()) {
+        $questions[] = [
+            'id' => $question['id'],
+            'title' => htmlspecialchars($question['title']),
+            'content' => nl2br(htmlspecialchars($question['content'])),
+            'username' => htmlspecialchars($question['username']),
+            'created_at' => $question['created_at'],
+        ];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BugBox</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Using jQuery from a CDN -->
+    <title>BugBox - Home</title>
+    <link rel="stylesheet" href="styles2.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+    const allQuestions = <?php echo json_encode($questions); ?>;
+    function renderQuestions(questions) {
+        const questionContainer = $('#questionsList');
+        questionContainer.empty();
+        if (questions.length === 0) {
+            questionContainer.append('<div class="question"><p>No questions found.</p></div>');
+        } else {
+            questions.forEach(function(question) {
+                questionContainer.append(
+                    `<div class="question">
+                        <h3><a href="view_question.php?id=${question.id}">${question.title}</a></h3>
+                        <p>${question.content}</p>
+                        <br>
+                        <small>Asked by ${question.username} on ${question.created_at}</small>
+                    </div>`
+                );
+            });
+        }
+    }
     $(document).ready(function(){
-        $("#searchForm").submit(function(e){
+        // Initial render
+        renderQuestions(allQuestions);
+        // Prevent form submission from reloading the page
+        $("#navbarSearchForm").on('submit', function(e) {
             e.preventDefault();
-            var searchVal = $("#searchInput").val();
-            window.location.href = "index.php?search=" + encodeURIComponent(searchVal);
+        });
+        // Instant frontend search
+        $("#navbarSearchInput").on('input', function() {
+            let searchTerm = $(this).val().trim().toLowerCase();
+            const filtered = allQuestions.filter(q =>
+                q.title.toLowerCase().includes(searchTerm) ||
+                q.content.toLowerCase().includes(searchTerm)
+            );
+            renderQuestions(filtered);
         });
     });
     </script>
+    <style>
+    #searchSpinner {
+        display: none;
+        width: 20px;
+        height: 20px;
+        margin-left: 10px;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .error {
+        color: #dc3545;
+        padding: 10px;
+        margin: 10px 0;
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        border-radius: 4px;
+    }
+    </style>
 </head>
 <body class="home-page">
-<header class="navbar">
-  <div class="logo-section">
-    <img src="images/bugicon.png" alt="BugBox Logo" class="logo-img">
-    <span class="logo-text">BugBox</span>
-  </div>
-  <div class="search-container">
-    <input type="text" class="search-input" placeholder="Search...">
-    <button class="search-btn">🔍</button>
-  </div>
-  <nav class="nav-links">
-    <a href="index.php">Home</a>
-    <a href="my_questions.php">Questions</a>
-    <a href="logout.php">Logout</a>
-   
-  </nav>
-</header>
-<div class="welcome-container">
-    <header>
-        <?php if(isset($_SESSION['user_id'])): ?>
-            <img src="images/bugs.png" alt="bugsearch" class="bugsearch" width="80" height="80">
-            <h1>Welcome To BugBox , <?php echo htmlspecialchars($_SESSION['username']); ?> </h1>
-            <p>Find answers to your technical questions and help others answer theirs.</p>
-        <?php else: ?>
-            <p><a href="login.php">Login</a> | <a href="register.php">Register</a></p>
-        <?php endif; ?>
-    </header>
-    </div>
-    <div class="question-container" id="indexquestion">
-    <section >
-        <form id="searchForm">
-            <input type="text" id="searchInput" name="search" placeholder="Search questions..." value="<?php echo htmlspecialchars($search); ?>">
-            <button type="submit">Search</button>
-        </form>
-        <h2>Questions</h2>
-        <button class="submit_button" onclick="window.location.href='add_question.php'">Add Question</button>    <?php while($question = $result->fetch_assoc()): ?>
+<?php include 'navbar.php'; ?>
 
-            </section>
-           
-    
+<div class="main-content">
+    <div class="card welcome-container">
+        <header>
+            <?php if(isset($_SESSION['user_id'])): ?>
+                <img src="images/bugicon.png" alt="BugBox Icon" class="welcome-icon" width="64" height="64">
+                <h1>Welcome To BugBox, <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
+                <p>Find answers to your technical questions and help others answer theirs.</p>
+            <?php else: ?>
+                <p><a href="login.php">Login</a> | <a href="register.php">Register</a></p>
+            <?php endif; ?>
+        </header>
     </div>
-    <div class="question">
-                <h3><a href="view_question.php?id=<?php echo $question['id']; ?>">
-                    <?php echo htmlspecialchars($question['title']); ?>
-                </a></h3>
-                
-                <p><?php echo nl2br(htmlspecialchars($question['content'])); ?></p>
-                <br>
-                <small>Asked on: <?php echo $question['created_at']; ?></small>
-            </div>
-            
-        <?php endwhile; ?>
+    <div class="card question-container" id="indexquestion">
+        <section>
+            <h2>Questions</h2>
+            <?php if(isset($_SESSION['user_id'])): ?>
+                <button class="submit_button" onclick="window.location.href='add_question.php'">Add Question</button>
+            <?php endif; ?>
+        </section>
+
+        <div id="questionsList"></div>
+    </div>
+</div>
 </body>
 </html>

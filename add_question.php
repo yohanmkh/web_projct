@@ -25,24 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title>Add Question</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<header class="navbar">
-  <div class="logo-section">
-    <img src="images/bugicon.png" alt="BugBox Logo" class="logo-img">
-    <span class="logo-text">BugBox</span>
-  </div>
-  <div class="search-container">
-    <input type="text" class="search-input" placeholder="Search...">
-    <button class="search-btn">🔍</button>
-  </div>
-  <nav class="nav-links">
-    <a href="index.php">Home</a>
-    <a href="my_questions.php">Questions</a>
-    <a href="logout.php">Logout</a>
-   
-  </nav>
-</header>
+<?php include 'navbar.php'; ?>
+
 <div class="question-container" >
     <h2>Add Question</h2>
     <?php if(isset($error)) echo "<p class='error'>$error</p>"; ?>

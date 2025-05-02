@@ -25,62 +25,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Login - BugBox</title>
+    <link rel="stylesheet" href="styles2.css">
     <link rel="icon" type="image/x-icon" href="images/bug.ico">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<header class="navbar">
-  <div class="logo-section">
-    <img src="images/bugicon.png" alt="BugBox Logo" class="logo-img">
-    <span class="logo-text">BugBox</span>
-  </div>
-  <div class="search-container">
-    <input type="text" class="search-input" placeholder="Search...">
-    <button class="search-btn">🔍</button>
-  </div>
-  <nav class="nav-links">
-    <a href="index.php">Home</a>
-    <a href="questions.php">Questions</a>
-    <a href="add">Ask</a>
-    <a href="about.html"></a>
-   
-  </nav>
-</header>
-<div style="display: flex ;flex-direction: column; align-items: center; justify-content: center; height: 100vh; background-color: #f0f0f0;">
- 
-<div>      
-    <img class="logo" src="images/bugicon.png" alt="logo" >
+<?php include 'navbar.php'; ?>
+<script>
+$(document).ready(function(){
+    // Hide the search bar on the login page
+    $(".search-container").hide();
+});
+</script>
+<div class="main-content">
+    <div class="card login-container">
+        <h2 class="login-title" style="text-align: center;">Login</h2>
+        <?php if (!empty($error)) echo "<div class='error-message'>$error</div>"; ?>
+        <form method="POST" class="login-form">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <div class="login-actions" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                <button type="submit" class="submit_button">Login</button>
+                <a href="register.php" class="cancel-edit-btn">Don't have an account? Register</a>
+            </div>
+        </form>
+        <div class="google-login-separator" style="margin: 24px 0 12px; text-align: center; color: #aaa;">or</div>
+        <button class="google-btn" id="googleLoginBtn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo" class="google-icon" style="width: 22px; height: 22px;" />
+            Continue with Google
+        </button>
+    </div>
 </div>
-
-
-<div class="login-container">
-    
-    
-    <?php if (isset($error)) echo "<p class='error'>$error</p>"; ?>
-    <form method="post" action="login.php">
-        <div class="labels">
-        <label>Username:<br>
-            <input class=cred_input type="text" name="username" required>
-        </label><br>
-        </div>
-        <div class="labels">
-        <label>Password:<br>
-            <input   class=cred_input  type="password" name="password" required>
-        </label><br>
-        </div>
-        <button class="submit_button" type="submit">Login</button>
-    </form>
-    <p><a class="donts" href="register.php">Don't have an account? Register here</a></p>
-</div>
-<div>
-  <button class="google-btn" id="googleLoginBtn">
-  <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo" class="google-icon" />
-  Continue with Google
-</button>
-
-    
-     </div>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
   import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
