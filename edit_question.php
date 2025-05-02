@@ -66,15 +66,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
     </div>
 </div>
-
-<script>
-    $(document).ready(function(){
-        $("#navbarSearchForm").submit(function(e){
-            e.preventDefault();
-            var searchVal = $("#navbarSearchInput").val();
-            window.location.href = "index.php?search=" + encodeURIComponent(searchVal);
-        });
-    });
-</script>
 </body>
 </html>

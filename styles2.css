@@ -35,9 +35,10 @@ body {
     box-shadow: var(--shadow);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding: 0 32px;
     z-index: 1000;
+    min-width: 0;
 }
 
 .logo-section {
@@ -45,6 +46,8 @@ body {
     align-items: center;
     gap: 8px;
     margin-right: 24px;
+    flex-shrink: 0;
+    min-width: 160px;
 }
 
 .logo-img {
@@ -61,8 +64,9 @@ body {
 }
 
 .search-container {
-    flex: 1;
+    flex: 1 1 0;
     max-width: 400px;
+    min-width: 200px;
     margin: 0 24px;
     display: flex;
     justify-content: center;
@@ -91,6 +95,9 @@ body {
 .nav-links {
     display: flex;
     gap: 20px;
+    align-items: center;
+    flex-shrink: 0;
+    min-width: 320px;
 }
 .nav-links a {
     color: var(--gray-600);

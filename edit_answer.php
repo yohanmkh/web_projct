@@ -45,45 +45,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Edit Answer - BugBox</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles2.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body class="home-page">
+<body>
 <?php include 'navbar.php'; ?>
-
 <div class="main-content">
-    <div class="edit-page-container">
-        <div class="edit-answer-card">
-            <div class="edit-answer-header">
-                <h1 class="edit-answer-title">Edit Answer</h1>
-                <p class="edit-answer-subtitle">
-                    You are editing your answer to the question: 
-                    <a href="view_question.php?id=<?php echo $answer['question_id']; ?>">
-                        <?php echo htmlspecialchars($answer['question_title']); ?>
-                    </a>
-                </p>
+    <div class="card edit-answer-card">
+        <h2 class="edit-answer-title" style="text-align: center;">Edit Answer</h2>
+        <?php if (!empty($error)) echo "<div class='error-message'>$error</div>"; ?>
+        <form method="POST" class="edit-answer-form">
+            <label for="content" style="text-align: center;">Your Answer</label>
+            <textarea id="content" name="content" rows="7" class="edit-answer-textarea" required><?php echo htmlspecialchars($answer['content']); ?></textarea>
+            <div class="edit-answer-actions" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                <button type="submit" class="save-answer-btn">Save Changes</button>
+                <a href="view_question.php?id=<?php echo $answer['question_id']; ?>" class="cancel-edit-btn">Cancel</a>
             </div>
-
-            <?php if (!empty($error)): ?>
-                <div class="error-message"><?php echo $error; ?></div>
-            <?php endif; ?>
-
-            <form method="POST" class="edit-answer-form">
-                <textarea name="content" 
-                          class="edit-answer-textarea" 
-                          required 
-                          placeholder="Enter your answer here..."
-                ><?php echo htmlspecialchars($answer['content']); ?></textarea>
-
-                <div class="edit-answer-actions">
-                    <button type="submit" class="save-answer-btn">Save Changes</button>
-                    <a href="view_question.php?id=<?php echo $answer['question_id']; ?>" 
-                       class="cancel-edit-btn">Cancel</a>
-                </div>
-            </form>
-        </div>
+        </form>
     </div>
 </div>
-
 </body>
 </html> 

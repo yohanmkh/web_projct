@@ -49,36 +49,6 @@ $answers_result = $stmt->get_result();
     <title><?php echo htmlspecialchars($question['title']); ?> - BugBox</title>
     <link rel="stylesheet" href="styles2.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-    $(document).ready(function(){
-        let searchTimeout;
-        
-        function performSearch(searchVal) {
-            if (searchVal.trim() !== '') {
-                window.location.href = "index.php?search=" + encodeURIComponent(searchVal);
-            } else {
-                window.location.href = "index.php";
-            }
-        }
-
-        // Handle form submission
-        $("#navbarSearchForm").submit(function(e){
-            e.preventDefault();
-            var searchVal = $(this).find('input[type="text"]').val();
-            performSearch(searchVal);
-        });
-
-        // Handle instant search
-        $("#navbarSearchInput").on('input', function() {
-            clearTimeout(searchTimeout);
-            var searchVal = $(this).val();
-            
-            searchTimeout = setTimeout(function() {
-                performSearch(searchVal);
-            }, 500); // Wait for 500ms after user stops typing
-        });
-    });
-    </script>
 </head>
 <body class="home-page">
 <?php include 'navbar.php'; ?>
