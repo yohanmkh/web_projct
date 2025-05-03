@@ -23,39 +23,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Question</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Add Question - BugBox</title>
+    <link rel="stylesheet" href="styles2.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<header class="navbar">
-  <div class="logo-section">
-    <img src="images/bugicon.png" alt="BugBox Logo" class="logo-img">
-    <span class="logo-text">BugBox</span>
-  </div>
-  <div class="search-container">
-    <input type="text" class="search-input" placeholder="Search...">
-    <button class="search-btn">🔍</button>
-  </div>
-  <nav class="nav-links">
-    <a href="index.php">Home</a>
-    <a href="my_questions.php">Questions</a>
-    <a href="logout.php">Logout</a>
-   
-  </nav>
-</header>
-<div class="question-container" >
-    <h2>Add Question</h2>
-    <?php if(isset($error)) echo "<p class='error'>$error</p>"; ?>
-    <form method="post" action="add_question.php">
-        <label>Title:<br>
-            <input type="text" name="title" required>
-        </label><br>
-        <label>Content:<br>
-            <textarea name="content" rows="5" required></textarea>
-        </label><br>
-        <button type="submit">Post Question</button>
-    </form>
-    <p><a href="index.php">Back to Questions</a></p>
+<?php include 'navbar.php'; ?>
+<div class="main-content">
+    <div class="card question-container">
+        <h2 style="text-align:center;">Add Question</h2>
+        <?php if(isset($error)) echo "<div class='error-message' style='max-width:320px;margin:12px auto 0 auto;text-align:center;'>$error</div>"; ?>
+        <form method="post" action="add_question.php" class="add-question-form" style="display: flex; flex-direction: column; align-items: center; gap: 18px;">
+            <div style="width:100%;max-width:400px;display:flex;flex-direction:column;align-items:center;">
+                <label for="title" style="text-align:center;">Title</label>
+                <input type="text" id="title" name="title" required style="width:100%;max-width:320px;">
+            </div>
+            <div style="width:100%;max-width:400px;display:flex;flex-direction:column;align-items:center;">
+                <label for="content" style="text-align:center;">Content</label>
+                <textarea id="content" name="content" rows="5" required style="width:100%;max-width:320px;"></textarea>
+            </div>
+            <button type="submit" class="submit_button">Post Question</button>
+        </form>
+        <p style="text-align:center;"><a href="index.php">Back to Questions</a></p>
     </div>
+</div>
 </body>
 </html>

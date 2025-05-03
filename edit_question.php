@@ -40,36 +40,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Edit Question</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Edit Question - BugBox</title>
+    <link rel="stylesheet" href="styles2.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<header class="navbar">
-  <div class="logo-section">
-    <img src="images/bugicon.png" alt="BugBox Logo" class="logo-img">
-    <span class="logo-text">BugBox</span>
-  </div>
-  <div class="search-container">
-    <input type="text" class="search-input" placeholder="Search...">
-    <button class="search-btn">🔍</button>
-  </div>
-  <nav class="nav-links">
-    <a href="index.php">Home</a>
-    <a href="my_questions.php">Questions</a>
-    <a href="logout.php">Logout</a>
-   
-  </nav>
-</header>
-    <div class="edit-container">
-        <h2>Edit Your Question</h2>
-        <?php if (!empty($error)) echo "<p class='error'>$error</p>"; ?>
-        <form method="POST">
-            <input type="text" name="title" class="cred_input" value="<?php echo htmlspecialchars($question['title']); ?>" required><br>
-            <textarea name="content" rows="7" class="cred_input" required><?php echo htmlspecialchars($question['content']); ?></textarea><br>
-            <button type="submit" class="submit_button">Save Changes</button>
+<?php include 'navbar.php'; ?>
+
+<div class="main-content">
+    <div class="card edit-question-card">
+        <h2 class="edit-question-title">Edit Your Question</h2>
+        <?php if (!empty($error)) echo "<div class='error-message'>$error</div>"; ?>
+        <form method="POST" class="edit-question-form">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($question['title']); ?>" required>
+            <label for="content">Content</label>
+            <textarea id="content" name="content" rows="7" required><?php echo htmlspecialchars($question['content']); ?></textarea>
+            <div class="edit-question-actions">
+                <button type="submit" class="save-question-btn">Save Changes</button>
+                <a href="my_questions.php" class="cancel-edit-btn">Cancel</a>
+            </div>
         </form>
     </div>
+</div>
 </body>
 </html>
