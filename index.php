@@ -110,8 +110,8 @@ if ($result->num_rows > 0) {
     <div class="card welcome-container">
         <header>
             <?php if(isset($_SESSION['user_id'])): ?>
-                <img src="images/20250503_1525_BugBox Logo Design_simple_compose_01jtb1nacbfb99kf6np83m91t4.webp" alt="BugBox Icon" class="welcome-icon" width="64" height="64">
-                <h1>Welcome To BugBox, <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
+                <img src="images/logo.png" alt="BugBox Logo" style="height: 40px; width: auto; border-radius: 6px;">
+   <h1>Welcome To BugBox, <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
                 <p>Find answers to your technical questions and help others answer theirs.</p>
             <?php else: ?>
                 <p><a href="login.php">Login</a> | <a href="register.php">Register</a></p>
