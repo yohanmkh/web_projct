@@ -54,7 +54,7 @@ $(document).ready(function(){
         </form>
         <div class="google-login-separator" style="margin: 24px 0 12px; text-align: center; color: #aaa;">or</div>
         <button class="google-btn" id="googleLoginBtn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;">
-            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo" class="google-icon" style="width: 22px; height: 22px;" />
+            <img src="pngwing.com.png" alt="Google Logo" class="google-icon" style="width: 22px; height: 22px;" />
             Continue with Google
         </button>
     </div>
