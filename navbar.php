@@ -20,6 +20,7 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="index.php">Home</a>
         <?php if(isset($_SESSION['user_id'])): ?>
             <a href="my_questions.php">My Questions</a>
+            <a href="my_answers.php">My Answers</a>
             <a href="add_question.php">Ask Question</a>
             <a href="logout.php">Logout</a>
         <?php else: ?>
