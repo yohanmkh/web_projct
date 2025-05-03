@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 ?>
 <header class="navbar">
     <div class="logo-section">
-        <img src="images/bugicon.png" alt="BugBox Icon" class="logo-img">
+        <img src="images/logo.png " alt="BugBox Icon" class="logo-img" >
         <span class="logo-text">BugBox</span>
     </div>
     <div class="search-container">

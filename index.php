@@ -48,7 +48,7 @@ if ($result->num_rows > 0) {
         } else {
             questions.forEach(function(question) {
                 questionContainer.append(
-                    `<div class="question">
+                    `<div class="question" style="margin-bottom: 70px; border-bottom: 1px solid #ccc; padding-bottom: 20px;">
                         <h3><a href="view_question.php?id=${question.id}">${question.title}</a></h3>
                         <p>${question.content}</p>
                         <br>
@@ -108,25 +108,27 @@ if ($result->num_rows > 0) {
 
 <div class="main-content">
     <div class="card welcome-container">
-        <header>
-            <?php if(isset($_SESSION['user_id'])): ?>
-                <img src="images/logo.png" alt="BugBox Logo" style="height: 40px; width: auto; border-radius: 6px;">
-   <h1>Welcome To BugBox, <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
-                <p>Find answers to your technical questions and help others answer theirs.</p>
-            <?php else: ?>
-                <p><a href="login.php">Login</a> | <a href="register.php">Register</a></p>
-            <?php endif; ?>
-        </header>
+    <header style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <?php if(isset($_SESSION['user_id'])): ?>
+        <img src="images/logo.png" alt="BugBox Logo" style="height: 100px; width: auto; border-radius: 6px; margin-bottom: 10px;">
+        <h1>Welcome To BugBox, <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
+        <p>Find answers to your technical questions and help others answer theirs.</p>
+    <?php else: ?>
+        <p><a href="login.php">Login</a> | <a href="register.php">Register</a></p>
+    <?php endif; ?>
+</header>
+
     </div>
-    <div class="card question-container" id="indexquestion">
+    <div class="card question-container" id="indexquestion" >
         <section>
             <h2>Questions</h2>
             <?php if(isset($_SESSION['user_id'])): ?>
                 <button class="submit_button" onclick="window.location.href='add_question.php'">Add Question</button>
             <?php endif; ?>
+            
         </section>
 
-        <div id="questionsList"></div>
+        <div id="questionsList" ></div>
     </div>
 </div>
 </body>

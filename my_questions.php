@@ -31,10 +31,10 @@ $result = $conn->query($query);
 <div class="main-content">
     <div class="card question-container">
         <h2 style="text-align:center;">My Questions</h2>
-        <div id="searchResults">
+        <div id="searchResults" >
             <?php if ($result->num_rows > 0): ?>
                 <?php while($question = $result->fetch_assoc()): ?>
-                    <div class="question">
+                    <div class="question" style="margin-bottom: 70px; border-bottom: 1px solid #ccc; padding-bottom: 20px;">
                         <h3><a href="view_question.php?id=<?php echo $question['id']; ?>">
                             <?php echo htmlspecialchars($question['title']); ?>
                         </a>

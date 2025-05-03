@@ -53,15 +53,16 @@ $answers_result = $stmt->get_result();
 <body class="home-page">
 <?php include 'navbar.php'; ?>
 
-<div class="main-content">
+<div class="main-content" >
     <div class="card question-view">
-        <div class="question-header">
+        <div class="question-header" >
             <div class="question-title-section">
                 <h1 class="question-title"><?php echo htmlspecialchars($question['title']); ?></h1>
-                <div class="question-metadata">
+                <div class="question-metadata" >
                     Asked by <?php echo htmlspecialchars($question['username']); ?> on 
-                    <?php echo date('M j, Y \a\t H:i', strtotime($question['created_at'])); ?>
+                    <?php echo date('M j, Y \a\t H:i', strtotime($question['created_at'])); ?>   
                 </div>
+             
             </div>
             <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id'] == $question['user_id']): ?>
                 <div class="action-buttons">

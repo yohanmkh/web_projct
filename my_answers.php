@@ -39,7 +39,7 @@ $result = $conn->query($query);
         <div id="searchResults">
             <?php if ($result->num_rows > 0): ?>
                 <?php while($answer = $result->fetch_assoc()): ?>
-                    <div class="question">
+                    <div class="question" style="margin-bottom: 70px; border-bottom: 1px solid #ccc; padding-bottom: 20px;">
                         <h3>In response to: 
                             <a href="view_question.php?id=<?php echo $answer['question_id']; ?>">
                                 <?php echo htmlspecialchars($answer['title']); ?>
