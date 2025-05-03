@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Add search functionality
+// Search functionality
 $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
 $where_clause = "a.user_id = $user_id";
 if (!empty($search)) {
@@ -43,6 +43,12 @@ $result = $conn->query($query);
                         <h3>In response to: 
                             <a href="view_question.php?id=<?php echo $answer['question_id']; ?>">
                                 <?php echo htmlspecialchars($answer['title']); ?>
+                            </a>
+                            <a href="edit_answer.php?id=<?php echo $answer['id']; ?>" class="login_button">
+                                <img src="images/edit.png" alt="edit" width="26px" height="26px">
+                            </a>
+                            <a href="delete_answer.php?id=<?php echo $answer['id']; ?>" onclick="return confirm('Are you sure you want to delete this answer?')" style="margin-left: 10px;">
+                                <img src="images/delete.png" alt="delete" width="26px" height="26px">
                             </a>
                         </h3>
                         <p><?php echo nl2br(htmlspecialchars($answer['content'])); ?></p>
